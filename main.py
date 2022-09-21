@@ -1,5 +1,5 @@
 import random
-from bke import MLAgent,  is_winner, opponent, RandomAgent, train_and_plot
+from bke import MLAgent,  is_winner, opponent, RandomAgent, train_and_plot, start
  
  
 class MyAgent(MLAgent):
@@ -21,8 +21,7 @@ random_agent = RandomAgent()
 train_and_plot(
     agent=my_agent,
     validation_agent=random_agent,
-    iterations=50,
-    trainings=100,
+    iterations=100,
+    trainings=200,
     validations=1000)
-
 
