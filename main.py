@@ -1,22 +1,25 @@
-from bke import MLAgent, is_winner, opponent, train, load, start
-
+from bke import MLAgent, is_winner, opponent, load, validate, RandomAgent, plot_validation
+ 
+ 
 class MyAgent(MLAgent):
- def evaluate(self, board):
-   if is_winner(board, self.symbol):
-     reward = 1 
-
-   elif is_winner(board, opponent[self.symbol]):
-     reward = -1
-
-   else:
-     reward = 0
-
-   return reward
-
-my_agent = MyAgent()
-
-my_agent = load("MyAgent_3000")
-
+    def evaluate(self, board):
+        if is_winner(board, self.symbol):
+            reward = 1
+        elif is_winner(board, opponent[self.symbol]):
+            reward = -1
+        else:
+            reward = 0
+        return reward
+    
+ 
+my_agent = load('MyAgent_3000')
 my_agent.learning = False
  
-start(player_o=my_agent)
+validation_agent = RandomAgent()
+ 
+validation_result = validate(agent_x=my_agent, agent_o=validation_agent, iterations=100)
+ 
+plot_validation(validation_result)
+
+
+
