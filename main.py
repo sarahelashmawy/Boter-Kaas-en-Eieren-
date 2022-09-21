@@ -1,4 +1,4 @@
-from bke import MLAgent, is_winner, opponent, start
+from bke import MLAgent, is_winner, opponent, train, load, start
 
 class MyAgent(MLAgent):
  def evaluate(self, board):
@@ -14,6 +14,9 @@ class MyAgent(MLAgent):
    return reward
 
 my_agent = MyAgent()
-start(player_o=my_agent)
-   
 
+my_agent = load("MyAgent_3000")
+
+my_agent.learning = False
+ 
+start(player_o=my_agent)
