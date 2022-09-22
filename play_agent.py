@@ -19,4 +19,3 @@ my_agent = load("MyAgent_3000")
 
 my_agent.learning = False
  
-start(player_o=my_agent)
