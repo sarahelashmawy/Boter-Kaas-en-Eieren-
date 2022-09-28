@@ -22,64 +22,79 @@ my_agent = load("MyAgent_3000")
 
 my_agent.learning = True
 
+def main():
+  print("\n" 
+  "Boter, kaas en eieren! \n")
 
-print(" \n"
-"Start menu \n"
-"1. Play \n"
-"2. Train \n")
-
-while True:
-    y = input("Selection: ")
-
-    if y == "1" or y == "2":
-      break
-    else:
-      print("Input incorrect. Please enter a valid choice.\n")
+  #main start menu
+  print(" \n"
+  "Start menu \n"
+  "1. Speel \n"
+  "2. Train \n")
   
-
-if y =="1" or y ==" 1":
-  print("\n"
-  "1. 2 players \n"
-  "2. Easy level \n"
-  "3. Hard level \n"
-  "4. Impossible level \n")
-
-  while True:
-    x = input("selection:")
-
-    if x == "1" or x == "2" or x == "3" or x == "4":
-      break
-    else:
-      print("Input incorrect. Please enter a valid choice.\n")
-  
-  
-  if x =="1" or x ==" 1": 
-    print ("2 spelers"
-    "\n")
-    start()
-  elif x == "2" or x ==" 2":
-    print("Easy level")
-    start(player_o=my_random_agent)
-  elif x == "3" or x == " 3":
-    print("Hard Level")
-    start(player_o=my_agent)
-  elif x == "4" or x == " 4": 
-    print("Imposssible level")
-
-elif y =="2" or y ==" 2":
-  print("\n"
-  "1. Train your opponent \n"
-  "2. View validation graph\n")
+  y = input("Kies van de genoemde opties: ")
   
   while True:
-    z = input("selection:")
+    if y == "1":
+      games()
+    elif y == "2":
+      training()
+    else:
+      print("\n"
+      "Input is fout. Voer een geldig keuze in.\n")
+      y = input("Kies van de genoemde opties: ")
+  
+def games():
+#menu van welke spellen 
+  print("\n"
+  "1. 2 spelers \n"
+  "2. Makkelijke level \n"
+  "3. Moeilijke level \n"
+  "4. Onmogelijke level \n"
+  "5. Terug naar het start menu \n")
+
+  x = input("Kies van de genoemde opties: ")
+  
+  while True:
+    if x == "1": 
+      print ("2 spelers \n")
+      start()
+    elif x == "2":
+      print("Makkelijke level")
+      start(player_o=my_random_agent)
+    elif x == "3":
+      print("Moeilijke Level")
+      start(player_o=my_agent)
+    elif x == "4":
+      print("Onmogelijke level")
+    elif x == "5":
+      main()
+    else:
+      print("\n"
+      "Input is fout. Voer een geldig keuze in.\n")
+      x = input("Kies van de genoemde opties: ")
+  
+
+def training():
+# menu van grafiek en training 
+  print("\n"
+  "1. Train je tegenstander \n"
+  "2. Bekijk de validatie grafiek \n"
+  "3. Terug naar het start menu \n")
+  
+  z = input("Kies van de genoemde opties: ")
     
-    if z == "1" or z == "2":
-      break
+  while True:
+    if z == "1":
+      print("Tegenstander trainen \n")
+    elif z == "2":
+      print("Validatie grafiek \n")
+    elif z == "3":
+      main()
     else:
-      print("Input incorrect. Please enter a valid choice.\n")
+      print("\n"
+      "Input is fout. Voer een geldig keuze in.\n")
+      z = input("Kies van de genoemde opties: ")
   
-  
-
-
+main()
 
