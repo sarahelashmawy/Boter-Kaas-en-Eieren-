@@ -73,7 +73,7 @@ class MyAgent(MLAgent):
             reward = 0
         return reward
 
-my_agent = MyAgent()
+my_agent = MyAgent(alpha=0.9, epsilon=0.2)
 
 my_agent = load('MyAgent_6000')
 my_agent.learning = True
