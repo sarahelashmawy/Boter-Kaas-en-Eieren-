@@ -1,36 +1,16 @@
 import random
-from bke import EvaluationAgent, MLAgent, is_winner, opponent, train, load, start
+from bke import EvaluationAgent, MLAgent, RandomAgent, train_and_plot, is_winner, opponent, train, load, save, HEADLESS, start
 
-class MyRandomAgent(EvaluationAgent):
-  def evaluate(self, board, my_symbol, opponent_symbol):
-    return random.randint(1,500)
-
-my_random_agent = MyRandomAgent()
-
-class MyAgent(MLAgent):
- def evaluate(self, board):
-   if is_winner(board, self.symbol):
-     reward = 1 
-   elif is_winner(board, opponent[self.symbol]):
-     reward = -1
-   else:
-     reward = 0
-   return reward
-
-my_agent = MyAgent()
-my_agent = load("MyAgent_3000")
-
-my_agent.learning = True
 
 def main():
   print("\n" 
   "Boter, kaas en eieren! \n")
 
-  #main start menu
+#main start menu
   print(" \n"
   "Start menu \n"
-  "1. Speel \n"
-  "2. Train \n")
+  "1. Spelen \n"
+  "2. Trainen en valideren \n")
   
   y = input("Kies van de genoemde opties: ")
   
@@ -38,7 +18,12 @@ def main():
     if y == "1":
       games()
     elif y == "2":
-      training()
+      train_and_plot(
+        agent=my_agent,
+        validation_agent=random_agent,
+        iterations=50,
+        trainings=500,
+        validations=1000)
     else:
       print("\n"
       "Input is fout. Voer een geldig keuze in.\n")
@@ -75,26 +60,30 @@ def games():
       x = input("Kies van de genoemde opties: ")
   
 
-def training():
-# menu van grafiek en training 
-  print("\n"
-  "1. Train je tegenstander \n"
-  "2. Bekijk de validatie grafiek \n"
-  "3. Terug naar het start menu \n")
-  
-  z = input("Kies van de genoemde opties: ")
-    
-  while True:
-    if z == "1":
-      print("Tegenstander trainen \n")
-    elif z == "2":
-      print("Validatie grafiek \n")
-    elif z == "3":
-      main()
-    else:
-      print("\n"
-      "Input is fout. Voer een geldig keuze in.\n")
-      z = input("Kies van de genoemde opties: ")
-  
+class MyRandomAgent(EvaluationAgent):
+  def evaluate(self, board, my_symbol, opponent_symbol):
+    return random.randint(1,500)
+
+my_random_agent = MyRandomAgent()
+
+class MyAgent(MLAgent):
+    def evaluate(self, board):
+        if is_winner(board, self.symbol):
+            reward = 1
+        elif is_winner(board, opponent[self.symbol]):
+            reward = -1
+        else:
+            reward = 0
+        return reward
+
+my_agent = MyAgent()
+
+my_agent = load('MyAgent_6000')
+my_agent.learning = True
+
+random.seed(1)
+random_agent = RandomAgent()
+
+
 main()
 
