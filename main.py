@@ -1,5 +1,5 @@
 import random
-from bke import EvaluationAgent, MLAgent, RandomAgent, train_and_plot, is_winner, opponent, train, load, save, HEADLESS, start
+from bke import EvaluationAgent, MLAgent, RandomAgent, train_and_plot, is_winner, opponent, train, load, save, start
 
 
 def main():
@@ -35,8 +35,7 @@ def games():
   "1. 2 spelers \n"
   "2. Makkelijke level \n"
   "3. Moeilijke level \n"
-  "4. Onmogelijke level \n"
-  "5. Terug naar het start menu \n")
+  "4. Terug naar het start menu \n")
 
   x = input("Kies van de genoemde opties: ")
   
@@ -51,8 +50,6 @@ def games():
       print("Moeilijke Level")
       start(player_o=my_agent)
     elif x == "4":
-      print("Onmogelijke level")
-    elif x == "5":
       main()
     else:
       print("\n"
