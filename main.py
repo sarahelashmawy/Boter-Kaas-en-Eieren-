@@ -1,11 +1,12 @@
 import random
-from bke import EvaluationAgent, MLAgent, RandomAgent, train_and_plot, is_winner, opponent, train, load, save, start
+from bke import EvaluationAgent, MLAgent, RandomAgent, train_and_plot, is_winner, opponent, load, start
 
+#makkelijke agent
 class MyRandomAgent(EvaluationAgent):
   def evaluate(self, board, my_symbol, opponent_symbol):
     return random.randint(1,500)
 
-
+#moeilijke agent
 class MyAgent(MLAgent):
     def evaluate(self, board):
         if is_winner(board, self.symbol):
@@ -16,7 +17,6 @@ class MyAgent(MLAgent):
             reward = 0
         return reward
 
-
 my_random_agent = MyRandomAgent()
   
 my_agent = MyAgent(alpha=0.9, epsilon=0.2)
@@ -26,12 +26,12 @@ my_agent.learning = True
 random.seed(1)
 random_agent = RandomAgent()
 
-  
+#main spel 
 def main():
   print("\n" 
   "Boter, kaas en eieren! \n")
-
-#main start menu
+  
+  #start menu
   print(" \n"
   "Start menu \n"
   "1. Spelen \n"
@@ -43,6 +43,7 @@ def main():
     menu()
   elif y == "2":
     while True:
+      #trainen en grafiek plotten
       train_and_plot(
         agent=my_agent,
         validation_agent=random_agent,
@@ -57,7 +58,7 @@ def main():
 
 
 def menu():
-#menu van welke spellen 
+#menu van spel niveaus en aantal spelers 
   print("\n"
   "1. 2 spelers \n"
   "2. Makkelijke level \n"
